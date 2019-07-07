@@ -23,6 +23,39 @@
   color: #61dafb;
 }
 
+#graph {
+  display: block;
+  border: 1px solid lightblue;
+  height: 400px;
+  margin: 20px;
+}
+
+textarea {
+  font-size: 12pt
+}
+
+.schema, .query{
+  display: inline-block;
+  margin: 20px;
+}
+
+.submit {
+    background-color: #004A7F;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    font-family: Arial;
+    font-size: 18px;
+    padding: 8px 25px;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
