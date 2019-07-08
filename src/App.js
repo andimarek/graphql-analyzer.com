@@ -5,6 +5,7 @@ import { analyzeQuery } from 'graphql-analyzer';
 import { parse } from 'graphql';
 import { buildSchema } from 'graphql';
 import { Network, DataSet } from 'vis';
+import { printDependencyGraph } from 'graphql-analyzer';
 
 let rootVertex;
 
@@ -13,7 +14,6 @@ var nodes = new DataSet([
 var edges = new DataSet([
 ]);
 
-let allVertices = [];
 let network;
 
 function createDataSet() {
@@ -22,38 +22,42 @@ function createDataSet() {
   }
   nodes.clear();
   edges.clear();
-  allVertices = [];
-  counter = 1;
-  createNodes(rootVertex);
-  createEdges(rootVertex);
+  const [vertices, dependencyEdges] = printDependencyGraph(rootVertex);
+  createNodes(vertices);
+  createEdges(dependencyEdges);
   network.fit();
 
 }
-let counter = 1;
-// let vertexById  
-
-function createNodes(vertex) {
-  allVertices.push(vertex);
+function createNodes(vertices) {
   let label;
-  if (!vertex.objectType) {
-    label = "ROOT";
-  } else {
-    label = vertex.objectType.name + "." + vertex.fields[0].name.value + ": " + vertex.fieldDefinition.type;
-  }
-  vertex.id = counter++;
-  nodes.add({ id: vertex.id, label });
-  for (const child of vertex.dependOnMe) {
-    createNodes(child);
+  for (const vertex of vertices) {
+    if (!vertex.fieldDefinition) {
+      label = "ROOT";
+    } else {
+      label = vertex.objectType.name + "." + vertex.fields[0].name.value + ": " + vertex.fieldDefinition.type;
+    }
+    nodes.add({ id: vertex.id, label });
   }
 }
-function createEdges(vertex) {
-  for (const dependOnMe of vertex.dependOnMe) {
-    edges.add({ from: dependOnMe.id, to: vertex.id, arrows: 'to' });
-  }
-  for (const child of vertex.dependOnMe) {
-    createEdges(child);
+function createEdges(dependencyEdges) {
+  // for (const dependOnMe of vertex.dependOnMe) {
+  //   edges.add({ from: dependOnMe.id, to: vertex.id, arrows: 'to' });
+  // }
+  // for (const child of vertex.dependOnMe) {
+  //   createEdges(child);
+  // }
+  for (const dependencyEdge of dependencyEdges) {
+    console.log(dependencyEdge);
+    edges.add({
+      from: dependencyEdge.from.id, to: dependencyEdge.to.id, arrows: 'to',
+      color: {
+        color: dependencyEdge.conditional ? 'red' : 'blue'
+      }
+    });
+
   }
 }
+
 
 function App() {
   return (
@@ -63,10 +67,10 @@ function App() {
       <Graph></Graph>
 
       <span>By Andi Marek</span>
-      <br/>
-      <a href="https://twitter.com/andimarek" target="_blank"  rel="noopener noreferrer"> Twitter </a>
-      <br/>
-      <a href="https://github.com/andimarek" target="_blank"  rel="noopener noreferrer"> Github </a>
+      <br />
+      <a href="https://twitter.com/andimarek" target="_blank" rel="noopener noreferrer"> Twitter </a>
+      <br />
+      <a href="https://github.com/andimarek" target="_blank" rel="noopener noreferrer"> Github </a>
     </div>
   );
 }
