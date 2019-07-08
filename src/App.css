@@ -38,6 +38,17 @@ textarea {
   display: inline-block;
   margin: 20px;
 }
+/* .explanation{
+  display: inline-block; 
+  border: 1px solid lightblue;
+  word-break:break-all;
+}
+.explanation > p {
+  display: inline;
+}
+.explanation > h3 {
+  display: inline;
+} */
 
 .submit {
     background-color: #004A7F;

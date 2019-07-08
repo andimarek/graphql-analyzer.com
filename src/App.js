@@ -40,12 +40,6 @@ function createNodes(vertices) {
   }
 }
 function createEdges(dependencyEdges) {
-  // for (const dependOnMe of vertex.dependOnMe) {
-  //   edges.add({ from: dependOnMe.id, to: vertex.id, arrows: 'to' });
-  // }
-  // for (const child of vertex.dependOnMe) {
-  //   createEdges(child);
-  // }
   for (const dependencyEdge of dependencyEdges) {
     console.log(dependencyEdge);
     edges.add({
@@ -86,7 +80,6 @@ class Graph extends React.Component {
     return <div ref={this.myRef} id="graph" />;
   }
   componentDidMount() {
-    // create a network
     var container = this.myRef.current;
     var data = {
       nodes: nodes,
@@ -164,7 +157,18 @@ type Cat implements Pet{
             <h3>Query</h3>
             <textarea value={this.state.query} onChange={this.handleQuery} cols={40} rows={15} />
           </div>
-          <button className="submit" type="submit">Analyze</button>
+          <div className="explanation">
+            <h3>Explanation</h3>
+            <p>Analyze the provided GraphQL query without executing it.</p>
+            <p>The result is a dependency graph. Every node (or vertex) represents a
+              field of an object type. The arrow (or edge) points
+            into the direction of the field which must be resolved before.
+            </p>
+            <p>Fragment, merged fields and fields on Interfaces are resolved to fields on object types.</p>
+            <p>A red arrow indicates that the dependency is conditional and the field will only be resolved
+              if the type matches when the query is executed. Blue arrows indicate matching types.</p>
+            <button className="submit" type="submit">Analyze</button>
+          </div>
         </form>
       </div>
     );
