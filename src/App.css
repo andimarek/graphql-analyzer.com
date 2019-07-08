@@ -38,12 +38,13 @@ textarea {
   display: inline-block;
   margin: 20px;
 }
-/* .explanation{
+.explanation{
   display: inline-block; 
-  border: 1px solid lightblue;
-  word-break:break-all;
+  border: 1px solid gray;
+  width: 350px;
+  /* word-break:break-all; */
 }
-.explanation > p {
+/* .explanation > p {
   display: inline;
 }
 .explanation > h3 {
