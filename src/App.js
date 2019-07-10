@@ -57,6 +57,7 @@ function App() {
   return (
     <div className="App">
       <h1>Analyze your GraphQL query</h1>
+      <a className="github-fork-ribbon right-top" href="https://github.com/andimarek/graphql-analyzer.com" data-ribbon="Fork me on GitHub" title="Fork me on GitHub" target="_blank" rel="noopener noreferrer">Fork me on GitHub</a>
       <Form></Form>
       <Graph></Graph>
 

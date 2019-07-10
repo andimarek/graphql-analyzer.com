@@ -72,3 +72,7 @@ textarea {
     margin: 0px;
   }
 }
+
+.github-fork-ribbon.right-top:before {
+  background-color: #000;
+}
