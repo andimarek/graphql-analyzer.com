@@ -147,19 +147,20 @@ type Cat implements Pet{
 
   render() {
     return (
-      <div className="example">
         <form onSubmit={this.handleSubmit}>
+           <div className="container">
           <div className="schema">
             <h3>Schema</h3>
-            <textarea value={this.state.schema} onChange={this.handleSchema} cols={40} rows={15} />
-          </div>
+                <textarea value={this.state.schema} onChange={this.handleSchema} cols={40} rows={15} />
+         </div>
           <div className="query">
             <h3>Query</h3>
             <textarea value={this.state.query} onChange={this.handleQuery} cols={40} rows={15} />
           </div>
-          {/* <h3 className="explanation">Explanation</h3> */}
           <div className="explanation">
-            <p>Analyze the provided GraphQL query without executing it.</p>
+          <h3>Explanation</h3>
+          <div className="text">
+          <p>Analyze the provided GraphQL query without executing it.</p>
             <p>The result is a dependency graph. Every node (or vertex) represents a
               field of an object type. The arrow (or edge) points
             into the direction of the field which must be resolved before.
@@ -167,10 +168,12 @@ type Cat implements Pet{
             <p>Fragment, merged fields and fields on Interfaces are resolved to fields on object types.</p>
             <p>A red arrow indicates that the dependency is conditional and the field will only be resolved
               if the type of the dependency node matches (at execution time) . Blue arrows indicate matching types.</p>
+              </div>
+          </div>
           </div>
           <button className="submit" type="submit">Analyze</button>
         </form>
-      </div>
+    
     );
   }
 }
