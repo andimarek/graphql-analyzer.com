@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { analyzeQuery } from 'graphql-analyzer';
 import { parse } from 'graphql';
@@ -57,15 +56,25 @@ function App() {
   return (
     <div className="App">
       <h1>Analyze your GraphQL query</h1>
+      <span className="powered">
+      Powered by graphql-analyzer 
+      <iframe className="github-star" src="https://ghbtns.com/github-btn.html?user=andimarek&repo=graphql-analyzer&type=star&count=true" frameBorder="0" scrolling="0" width="170px" height="20px"></iframe>
+      </span>
+      <div className="follow">
+      <a href="https://twitter.com/andimarek" className="twitter-follow-button" data-show-count="false">Follow @andimarek</a>
+      </div>
       <a className="github-fork-ribbon right-top" href="https://github.com/andimarek/graphql-analyzer.com" data-ribbon="Fork me on GitHub" title="Fork me on GitHub" target="_blank" rel="noopener noreferrer">Fork me on GitHub</a>
       <Form></Form>
       <Graph></Graph>
 
-      <span>By Andi Marek</span>
+      {/* <span>By Andi Marek</span>
       <br />
       <a href="https://twitter.com/andimarek" target="_blank" rel="noopener noreferrer"> Twitter </a>
       <br />
-      <a href="https://github.com/andimarek" target="_blank" rel="noopener noreferrer"> Github </a>
+      <a href="https://github.com/andimarek" target="_blank" rel="noopener noreferrer"> Github </a> */}
+    <footer> 
+      &copy; Andi Marek 
+    </footer>
     </div>
   );
 }
