@@ -28,7 +28,7 @@ textarea {
 }
 
 .schema, .query, .explanation {
-  margin: 20px;
+  margin: 15px;
 }
 .text {
   border: 1px solid gray;
@@ -43,11 +43,18 @@ textarea {
     cursor: pointer;
     display: block;
     margin: 20px auto;
+    margin-bottom: 2.5rem;
     font-family: Arial;
     font-size: 18px;
     padding: 8px 25px;
     text-align: center;
     text-decoration: none;
+  }
+  .errors {
+    color: red;
+    font-size: 1.2rem;
+    font-weight: bold;
+    height: 32px;
   }
   
   #graph {
@@ -60,5 +67,8 @@ textarea {
 @media screen and (max-width: 950px) {
   .container {
     flex-direction: column;
+  }
+  .schema, .query, .explanation {
+    margin: 0px;
   }
 }

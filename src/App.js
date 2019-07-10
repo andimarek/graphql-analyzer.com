@@ -138,42 +138,49 @@ type Cat implements Pet{
   }
 
   handleSubmit(event) {
-    const document = parse(this.state.query);
-    const schema = buildSchema(this.state.schema);
-    rootVertex = analyzeQuery(document, schema);
-    createDataSet();
+    try {
+      const document = parse(this.state.query);
+      const schema = buildSchema(this.state.schema);
+
+      rootVertex = analyzeQuery(document, schema);
+      createDataSet();
+      this.setState({error: null});
+    } catch (error) {
+      this.setState({error: error.message});
+    }
     event.preventDefault();
   }
 
   render() {
     return (
-        <form onSubmit={this.handleSubmit}>
-           <div className="container">
+      <form onSubmit={this.handleSubmit}>
+        <div className="container">
           <div className="schema">
             <h3>Schema</h3>
-                <textarea value={this.state.schema} onChange={this.handleSchema} cols={40} rows={15} />
-         </div>
+            <textarea value={this.state.schema} onChange={this.handleSchema} cols={40} rows={15} />
+          </div>
           <div className="query">
             <h3>Query</h3>
             <textarea value={this.state.query} onChange={this.handleQuery} cols={40} rows={15} />
           </div>
           <div className="explanation">
-          <h3>Explanation</h3>
-          <div className="text">
-          <p>Analyze the provided GraphQL query without executing it.</p>
-            <p>The result is a dependency graph. Every node (or vertex) represents a
-              field of an object type. The arrow (or edge) points
-            into the direction of the field which must be resolved before.
+            <h3>Explanation</h3>
+            <div className="text">
+              <p>Analyze the provided GraphQL query without executing it.</p>
+              <p>The result is a dependency graph. Every node (or vertex) represents a
+                field of an object type. The arrow (or edge) points
+              into the direction of the field which must be resolved before.
             </p>
-            <p>Fragment, merged fields and fields on Interfaces are resolved to fields on object types.</p>
-            <p>A red arrow indicates that the dependency is conditional and the field will only be resolved
+              <p>Fragment, merged fields and fields on Interfaces are resolved to fields on object types.</p>
+              <p>A red arrow indicates that the dependency is conditional and the field will only be resolved
               if the type of the dependency node matches (at execution time) . Blue arrows indicate matching types.</p>
-              </div>
+            </div>
           </div>
-          </div>
-          <button className="submit" type="submit">Analyze</button>
-        </form>
-    
+        </div>
+        <div className="errors">{this.state.error}</div>
+        <button className="submit" type="submit">Analyze</button>
+      </form>
+
     );
   }
 }
