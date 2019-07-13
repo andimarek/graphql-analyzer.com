@@ -44,7 +44,7 @@ function createEdges(dependencyEdges) {
     edges.add({
       from: dependencyEdge.from.id, to: dependencyEdge.to.id, arrows: 'to',
       color: {
-        color: dependencyEdge.conditional ? 'red' : 'blue'
+        color: dependencyEdge.conditional ? 'red' : 'black'
       }
     });
 
@@ -183,7 +183,7 @@ type Cat implements Pet{
             </p>
               <p>Fragment, merged fields and fields on Interfaces are resolved to fields on object types.</p>
               <p>A red arrow indicates that the dependency is conditional and the field will only be resolved
-              if the type of the dependency node matches (at execution time) . Blue arrows indicate matching types.</p>
+              if the type of the dependency node matches (at execution time) . Black arrows indicate matching types.</p>
             </div>
           </div>
         </div>
