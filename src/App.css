@@ -87,4 +87,14 @@ textarea {
   .schema, .query, .explanation {
     margin: 0px;
   }
+  .github-fork-ribbon {
+    display: none;
+  }
+  .powered {
+    margin-left: 5px;
+  }
+  .github-star {
+    margin-bottom: -14px;
+    margin-left: 94px;
+  }
 }
